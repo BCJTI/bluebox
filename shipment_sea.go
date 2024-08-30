@@ -6,39 +6,62 @@ type OceanSubscription struct {
 }
 
 type OceanSubSubscription struct {
-	CommunicationChannelCode    *string                      `json:"communicationChannelCode,omitempty"`
-	OceanSubCommodities         []OceanSubCommodity          `json:"commodities,omitempty"`
-	OceanSubReferences          []OceanSubReference          `json:"references,omitempty"`
-	OceanSubRequestedEquipments []OceanSubRequestedEquipment `json:"requestedEquipments,omitempty"`
-	OceanSubDocumentParties     []OceanSubDocumentParty      `json:"documentParties,omitempty"`
+	CommunicationChannelCode                  *string                      `json:"communicationChannelCode,omitempty"`                  // for Subscribe single shipment
+	ExpectedArrivalAtPlaceOfDeliveryStartDate *string                      `json:"expectedArrivalAtPlaceOfDeliveryStartDate,omitempty"` // for Subscribe with master bill of lading
+	ExpectedArrivalAtPlaceOfDeliveryEndDate   *string                      `json:"expectedArrivalAtPlaceOfDeliveryEndDate,omitempty"`   // for Subscribe with master bill of lading
+	TransportDocumentTypeCode                 *string                      `json:"transportDocumentTypeCode,omitempty"`                 // for Subscribe with master bill of lading
+	TransportDocumentReference                *string                      `json:"transportDocumentReference,omitempty"`                // for Subscribe with master bill of lading
+	IncoTerms                                 *string                      `json:"incoTerms,omitempty"`                                 // for Subscribe with master bill of lading
+	OceanSubCommodities                       []OceanSubCommodity          `json:"commodities,omitempty"`                               // for Both Subscribes
+	OceanSubReferences                        []OceanSubReference          `json:"references,omitempty"`                                // for Both Subscribes
+	OceanSubRequestedEquipments               []OceanSubRequestedEquipment `json:"requestedEquipments,omitempty"`                       // for Subscribe single shipment
+	OceanSubDocumentParties                   []OceanSubDocumentParty      `json:"documentParties,omitempty"`                           // for Both Subscribes
+	ShipmentLocations                         []OceanSubShipmentLocation   `json:"shipmentLocations,omitempty"`                         // for Subscribe with master bill of lading
 }
 
 type OceanSubCommodity struct {
-	CommodityRequestedEquipmentLink *string `json:"commodityRequestedEquipmentLink,omitempty"`
+	CommodityRequestedEquipmentLink *string `json:"commodityRequestedEquipmentLink,omitempty"` // for Subscribe single shipment
+	CommodityType                   *string `json:"commodityType,omitempty"`                   // for Subscribe with master bill of lading
+	CargoGrossWeight                *int    `json:"cargoGrossWeight,omitempty"`                // for Subscribe with master bill of lading
+	NumberOfPackages                *int    `json:"numberOfPackages,omitempty"`                // for Subscribe with master bill of lading
 }
 
 type OceanSubReference struct {
-	Type  *string `json:"type,omitempty"`
-	Value *string `json:"value,omitempty"`
+	Type  *string `json:"type,omitempty"`  // for Both Subscribes
+	Value *string `json:"value,omitempty"` // for Both Subscribes
 }
 
 type OceanSubRequestedEquipment struct {
-	EquipmentReferences             []string `json:"equipmentReferences,omitempty"`
-	CommodityRequestedEquipmentLink *string  `json:"commodityRequestedEquipmentLink,omitempty"`
+	EquipmentReferences             []string `json:"equipmentReferences,omitempty"`             // for Both Subscribes
+	CommodityRequestedEquipmentLink *string  `json:"commodityRequestedEquipmentLink,omitempty"` // for Both Subscribes
 }
 
 type OceanSubDocumentParty struct {
-	OceanSubParty *OceanSubParty `json:"party,omitempty"`
-	PartyFunction *string        `json:"partyFunction,omitempty"`
+	OceanSubParty *OceanSubParty `json:"party,omitempty"`         // for Both Subscribes
+	PartyFunction *string        `json:"partyFunction,omitempty"` // for Both Subscribes
 }
 
 type OceanSubParty struct {
-	PartyName *string          `json:"partyName,omitempty"`
-	Address   *OceanSubAddress `json:"address,omitempty"`
+	PartyName *string          `json:"partyName,omitempty"` // for Both Subscribes
+	Address   *OceanSubAddress `json:"address,omitempty"`   // for Both Subscribes
 }
 
 type OceanSubAddress struct {
-	Name *string `json:"name,omitempty"`
+	Name    *string `json:"name,omitempty"`    // for Subscribe single shipment
+	City    *string `json:"city,omitempty"`    // for Subscribe with master bill of lading
+	Country *string `json:"country,omitempty"` // for Subscribe with master bill of lading
+}
+
+type OceanSubShipmentLocation struct {
+	Location                 *OceanSubLocation `json:"location,omitempty"`                 // for Subscribe with master bill of lading
+	ShipmentLocationTypeCode *string           `json:"shipmentLocationTypeCode,omitempty"` // for Subscribe with master bill of lading
+	EventDateTime            *Timestamp        `json:"eventDateTime,omitempty"`            // for Subscribe with master bill of lading
+}
+
+// Estrutura que representa uma localização.
+type OceanSubLocation struct {
+	LocationName *string          `json:"locationName"` // for Subscribe with master bill of lading
+	Address      *OceanSubAddress `json:"address"`      // for Subscribe with master bill of lading
 }
 
 func (c *Client) SubscribeOceanShipments(shipments []OceanSubSubscription) (*ShipmentSubscriptionResponse, error) {
