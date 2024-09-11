@@ -39,7 +39,7 @@ func (c *Client) GetShipmentTelemetries(mawbs string) (*ShipmentTelemetryRespons
 
 	response := new(ShipmentTelemetryResponse)
 
-	err := c.Get("shipment/telemetry", request, nil, response)
+	err := c.Get("/air/shipment/telemetry", request, nil, response)
 
 	return response, err
 

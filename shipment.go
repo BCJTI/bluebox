@@ -37,7 +37,7 @@ func (c *Client) SubscribeShipments(shipments []Shipment) (*ShipmentSubscription
 
 	response := new(ShipmentSubscriptionResponse)
 
-	err := c.Post("/shipment/subscription", request, nil, response)
+	err := c.Post("/air/shipment/subscription", request, nil, response)
 
 	return response, err
 

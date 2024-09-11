@@ -73,7 +73,7 @@ func (c *Client) GetSubscriptions(requestRefs string, shipmentKeys []Subscriptio
 
 	response := new(SubscriptionResponse)
 
-	err := c.Get("shipment/subscription", request, nil, response)
+	err := c.Get("/air/shipment/subscription", request, nil, response)
 
 	return response, err
 

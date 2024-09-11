@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-const baseUrl = "https://api.bluebox-systems-air.com/services/"
+const baseUrl = "https://api.bluebox-systems-cargo.com"
 
 // Params serves to map data for post in the request
 type Params map[string]interface{}
@@ -78,8 +78,8 @@ func (c *Client) execute(method string, path string, params interface{}, headers
 	request.SetBasicAuth(c.username, c.password)
 
 	// define json content type
-	request.Header.Add("accept", "application/json")
-	request.Header.Add("content-type", "application/json")
+	request.Header.Add("Accept", "application/json")
+	request.Header.Add("Content-type", "application/json")
 
 	// add extra headers
 	if headers != nil {

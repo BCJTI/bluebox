@@ -24,7 +24,7 @@ func (c *Client) GetShipmentStatus(mawbs string) (*ShipmentStatusResponse, error
 
 	response := new(ShipmentStatusResponse)
 
-	err := c.Get("shipment/status", request, nil, response)
+	err := c.Get("/air/shipment/status", request, nil, response)
 
 	return response, err
 

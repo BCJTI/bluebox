@@ -55,8 +55,9 @@ func TestGetShipmentTelemetries(t *testing.T) {
 
 func TestSubscribeOceanShipments(t *testing.T) {
 	shipments := []bluebox.OceanSubSubscription{{
-		CommunicationChannelCode: nil,
+		OceanSubRequestedEquipments: []bluebox.OceanSubRequestedEquipment{{EquipmentReferences: []string{"TEMU3179317"}}},
 	}}
+
 	response, err := client.SubscribeOceanShipments(shipments)
 	assert.NoError(t, err)
 	assert.NotNil(t, response, "response cannot be nil")
