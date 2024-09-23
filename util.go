@@ -3,6 +3,7 @@ package bluebox
 import (
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"strconv"
 	"strings"
 	"time"
@@ -73,4 +74,16 @@ func ToJson(data interface{}) (jsn string, err error) {
 
 	return
 
+}
+
+func Serialize(obj interface{}) string {
+
+	// Convert back to a pretty JSON string
+	prettyJSON, err := json.MarshalIndent(obj, "", "  ")
+	if err != nil {
+		fmt.Println("Error:", err)
+		return ""
+	}
+
+	return string(prettyJSON)
 }

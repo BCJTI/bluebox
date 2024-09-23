@@ -1,8 +1,10 @@
 package bluebox
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"strings"
@@ -32,6 +34,8 @@ func (c *Client) execute(method string, path string, params interface{}, headers
 		if err != nil {
 			return err
 		}
+
+		fmt.Println(string(b))
 
 		// send as body
 		if method != http.MethodGet {
@@ -75,20 +79,25 @@ func (c *Client) execute(method string, path string, params interface{}, headers
 	}
 
 	// set basic auth
-	request.SetBasicAuth(c.username, c.password)
+	// request.SetBasicAuth(c.username, c.password)
 
 	// define json content type
-	request.Header.Add("Accept", "application/json")
-	request.Header.Add("Content-type", "application/json")
+	request.Header.Set("Accept", "application/json")
+	request.Header.Set("Content-type", "application/json")
+	request.Header.Set("Authorization", "Basic YXBpLXdpbmRsb2c6V2luZGxvZzEyMzQ1Njc4")
 
 	// add extra headers
 	if headers != nil {
 		for key, value := range headers {
-			request.Header.Add(key, value)
+			request.Header.Set(key, value)
 		}
 	}
 
-	response, err := http.DefaultClient.Do(request)
+	client := &http.Client{Transport: &http.Transport{
+		TLSClientConfig: &tls.Config{},
+	}}
+
+	response, err := client.Do(request)
 	if err != nil {
 		return err
 	}
