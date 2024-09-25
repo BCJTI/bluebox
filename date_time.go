@@ -20,6 +20,16 @@ func NewTimestamp(t time.Time) Timestamp {
 	return Timestamp(time.Date(t.Year(), t.Month(), t.Day(), t.Hour(), t.Minute(), t.Second(), 0, t.Location()))
 }
 
+func NewTimestampPointer(dateString string) (*Timestamp, error) {
+	layout := "2006-01-02 15:04" // Layout for parsing the date string
+	t, err := time.Parse(layout, dateString)
+	if err != nil {
+		return nil, err
+	}
+	ts := Timestamp(t)
+	return &ts, nil
+}
+
 func (dt DateOnly) MarshalJSON() ([]byte, error) {
 	return []byte(time.Time(dt).Format(DateOnlyFormat)), nil
 }

@@ -1,5 +1,7 @@
 package bluebox
 
+import "fmt"
+
 type OceanSubscription struct {
 	MessageHeaderOceanSub *MessageHeader         `json:"message_header,omitempty"`
 	OceanSubscriptions    []OceanSubSubscription `json:"ocean_subscriptions,omitempty"`
@@ -72,6 +74,8 @@ func (c *Client) SubscribeOceanShipments(shipments []OceanSubSubscription) (*Shi
 		},
 		OceanSubscriptions: shipments,
 	}
+
+	fmt.Println(Serialize(request))
 
 	response := new(ShipmentSubscriptionResponse)
 
