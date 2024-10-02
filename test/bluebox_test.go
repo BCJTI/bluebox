@@ -29,7 +29,7 @@ func TestGetSubscriptions(t *testing.T) {
 }
 
 func TestSubscribeShipments(t *testing.T) {
-	shipments := []bluebox.ShipmentSubscription{{
+	shipments := []bluebox.Subscription{{
 		Mawb:      bluebox.Str2Pnt(os.Getenv("BB_MAWB")),
 		PushTypes: []string{"SHIPMENT", "TELEMETRY"},
 	}}

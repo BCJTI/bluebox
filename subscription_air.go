@@ -3,6 +3,7 @@ package bluebox
 type Subscription struct {
 	Description           *string    `json:"description,omitempty"`
 	ShipmentID            *string    `json:"shipment_id,omitempty"`
+	UniqueShipmentID      *string    `json:"unique_shipment_id,omitempty"`
 	Mawb                  *string    `json:"mawb,omitempty"`
 	Hawb                  *string    `json:"hawb,omitempty"`
 	CustomerReference     *string    `json:"customer_reference,omitempty"`

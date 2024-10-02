@@ -79,12 +79,11 @@ func (c *Client) execute(method string, path string, params interface{}, headers
 	}
 
 	// set basic auth
-	// request.SetBasicAuth(c.username, c.password)
+	request.SetBasicAuth(c.username, c.password)
 
 	// define json content type
 	request.Header.Set("Accept", "application/json")
 	request.Header.Set("Content-type", "application/json")
-	request.Header.Set("Authorization", "Basic YXBpLXdpbmRsb2c6V2luZGxvZzEyMzQ1Njc4")
 
 	// add extra headers
 	if headers != nil {

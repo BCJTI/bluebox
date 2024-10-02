@@ -62,8 +62,8 @@ type Shipment struct {
 }
 
 type ShipmentSubscriptionRequest struct {
-	MessageHeader *MessageHeader         `json:"messageHeader"`
-	Shipments     []ShipmentSubscription `json:"shipments"`
+	MessageHeader *MessageHeader `json:"messageHeader"`
+	Shipments     []Subscription `json:"shipments"`
 }
 
 type ShipmentSubscriptionResponse struct {
@@ -71,7 +71,7 @@ type ShipmentSubscriptionResponse struct {
 	UIDS    []string `json:"uids"`
 }
 
-func (c *Client) SubscribeShipments(shipments []ShipmentSubscription) (*ShipmentSubscriptionResponse, error) {
+func (c *Client) SubscribeShipments(shipments []Subscription) (*ShipmentSubscriptionResponse, error) {
 
 	request := &ShipmentSubscriptionRequest{
 		MessageHeader: &MessageHeader{
