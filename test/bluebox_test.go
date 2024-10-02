@@ -29,8 +29,9 @@ func TestGetSubscriptions(t *testing.T) {
 }
 
 func TestSubscribeShipments(t *testing.T) {
-	shipments := []bluebox.Shipment{{
-		Mawb: bluebox.Str2Pnt(os.Getenv("BB_MAWB")),
+	shipments := []bluebox.ShipmentSubscription{{
+		Mawb:      bluebox.Str2Pnt(os.Getenv("BB_MAWB")),
+		PushTypes: []string{"SHIPMENT", "TELEMETRY"},
 	}}
 	response, err := client.SubscribeShipments(shipments)
 	assert.NoError(t, err)
@@ -108,6 +109,10 @@ func TestSubscribeOceanShipments(t *testing.T) {
 				Value: bluebox.Str2Pnt("CMDU"),
 			},
 		},
+		OceanSubRequestedEquipments: []bluebox.OceanSubRequestedEquipment{{
+			EquipmentReferences:             []string{"TEMU3179317"},
+			CommodityRequestedEquipmentLink: bluebox.Str2Pnt("001"),
+		}},
 		OceanSubDocumentParties: []bluebox.OceanSubDocumentParty{{
 			OceanSubParty: &bluebox.OceanSubParty{
 				PartyName: bluebox.Str2Pnt("CMA CGM - São Paulo"),
