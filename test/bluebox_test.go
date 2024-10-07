@@ -97,11 +97,11 @@ func TestSubscribeOceanShipments(t *testing.T) {
 		//ExpectedArrivalAtPlaceOfDeliveryEndDate:   bluebox.Str2Pnt("2024-10-02"),
 		OceanSubReferences: []bluebox.OceanSubReference{
 			{
-				Type:  bluebox.Str2Pnt("FF"),
+				Type:  bluebox.Str2Pnt("CR"),
 				Value: bluebox.Str2Pnt("WINDT-ES24080014"),
 			},
 			{
-				Type:  bluebox.Str2Pnt("CR"),
+				Type:  bluebox.Str2Pnt("FF"),
 				Value: bluebox.Str2Pnt("SSZ1520203"),
 			},
 			{

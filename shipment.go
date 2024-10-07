@@ -1,5 +1,7 @@
 package bluebox
 
+import "fmt"
+
 type ShipmentSubscription struct {
 	UniqueShipmentID   *string  `json:"unique_shipment_id"`
 	Mawb               *string  `json:"mawb"`
@@ -62,7 +64,7 @@ type Shipment struct {
 }
 
 type ShipmentSubscriptionRequest struct {
-	MessageHeader *MessageHeader `json:"messageHeader"`
+	MessageHeader *MessageHeader `json:"message_header"`
 	Shipments     []Subscription `json:"shipments"`
 }
 
@@ -81,6 +83,8 @@ func (c *Client) SubscribeShipments(shipments []Subscription) (*ShipmentSubscrip
 	}
 
 	response := new(ShipmentSubscriptionResponse)
+
+	fmt.Println(Serialize(request))
 
 	err := c.Post("/air/shipment/subscription", request, nil, response)
 
