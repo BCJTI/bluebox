@@ -113,36 +113,36 @@ func TestSubscribeOceanShipments(t *testing.T) {
 			EquipmentReferences:             []string{"TEMU3179317"},
 			CommodityRequestedEquipmentLink: bluebox.Str2Pnt("001"),
 		}},
-		OceanSubDocumentParties: []bluebox.OceanSubDocumentParty{{
-			OceanSubParty: &bluebox.OceanSubParty{
-				PartyName: bluebox.Str2Pnt("CMA CGM - São Paulo"),
-				Address: &bluebox.OceanSubAddress{
-					Name: bluebox.Str2Pnt("CMA CGM - São Paulo"),
-				},
-			},
-			PartyFunction: bluebox.Str2Pnt("OS"),
-		}},
-		ShipmentLocations: []bluebox.OceanSubShipmentLocation{{
-			Location: &bluebox.OceanSubLocation{
-				LocationName: bluebox.Str2Pnt("Belize City"),
-				Address: &bluebox.OceanSubAddress{
-					City:    bluebox.Str2Pnt("Belize City"),
-					Country: bluebox.Str2Pnt("BZ"),
-				},
-			},
-			ShipmentLocationTypeCode: bluebox.Str2Pnt("PDE"),
-			//EventDateTime:            timeArrival,
-		}, {
-			Location: &bluebox.OceanSubLocation{
-				LocationName: bluebox.Str2Pnt("Santos"),
-				Address: &bluebox.OceanSubAddress{
-					City:    bluebox.Str2Pnt("Belize City"),
-					Country: bluebox.Str2Pnt("BZ"),
-				},
-			},
-			ShipmentLocationTypeCode: bluebox.Str2Pnt("PRE"),
-			//EventDateTime:            timeLoad,
-		}},
+		//OceanSubDocumentParties: []bluebox.OceanSubDocumentParty{{
+		//	OceanSubParty: &bluebox.OceanSubParty{
+		//		PartyName: bluebox.Str2Pnt("CMA CGM - São Paulo"),
+		//		Address: &bluebox.OceanSubAddress{
+		//			Name: bluebox.Str2Pnt("CMA CGM - São Paulo"),
+		//		},
+		//	},
+		//	PartyFunction: bluebox.Str2Pnt("OS"),
+		//}},
+		//ShipmentLocations: []bluebox.OceanSubShipmentLocation{{
+		//	Location: &bluebox.OceanSubLocation{
+		//		LocationName: bluebox.Str2Pnt("Belize City"),
+		//		Address: &bluebox.OceanSubAddress{
+		//			City:    bluebox.Str2Pnt("Belize City"),
+		//			Country: bluebox.Str2Pnt("BZ"),
+		//		},
+		//	},
+		//	ShipmentLocationTypeCode: bluebox.Str2Pnt("PDE"),
+		//	//EventDateTime:            timeArrival,
+		//}, {
+		//	Location: &bluebox.OceanSubLocation{
+		//		LocationName: bluebox.Str2Pnt("Santos"),
+		//		Address: &bluebox.OceanSubAddress{
+		//			City:    bluebox.Str2Pnt("Belize City"),
+		//			Country: bluebox.Str2Pnt("BZ"),
+		//		},
+		//	},
+		//	ShipmentLocationTypeCode: bluebox.Str2Pnt("PRE"),
+		//	//EventDateTime:            timeLoad,
+		//}},
 	}}
 
 	response, err := client.SubscribeOceanShipments(shipments)
