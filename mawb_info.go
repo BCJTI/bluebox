@@ -12,5 +12,6 @@ type MawbInfo struct {
 	DlvPieces       *int       `json:"dlv_pieces,omitempty"`
 	Status          *string    `json:"status,omitempty"`
 	StatusTs        *Timestamp `json:"status_ts,omitempty"`
+	PdcArrivalTs    *Timestamp `json:"pdc_arrival_ts,omitempty"`
 	Movements       []Movement `json:"movements,omitempty"`
 }

@@ -7,4 +7,5 @@ type HawbInfo struct {
 	CustomerReference  *string             `json:"customer_reference,omitempty"`
 	Co2Emission        *Co2Emission        `json:"co2_emission,omitempty"`
 	SubscriptionStatus *SubscriptionStatus `json:"subscription_status,omitempty"`
+	UniqueShipmentId   *string             `json:"unique_shipment_id,omitempty"`
 }

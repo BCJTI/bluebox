@@ -73,7 +73,7 @@ type ShipmentSubscriptionResponse struct {
 	UIDS    []string `json:"uids"`
 }
 
-func (c *Client) SubscribeShipments(shipments []Subscription) (*ShipmentSubscriptionResponse, error) {
+func (c *Client) SubscribeAirShipments(shipments []Subscription) (*ShipmentSubscriptionResponse, error) {
 
 	request := &ShipmentSubscriptionRequest{
 		MessageHeader: &MessageHeader{

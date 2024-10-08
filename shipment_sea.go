@@ -2,6 +2,31 @@ package bluebox
 
 import "fmt"
 
+// enum DateType ACT (Actual) PLN (Planned) EST (Estimated)
+
+type DateTypeEnum string
+
+var (
+	DateTypeActual    DateTypeEnum = "ACT"
+	DateTypePlanned   DateTypeEnum = "PLN"
+	DateTypeEstimated DateTypeEnum = "EST"
+)
+
+func (e DateTypeEnum) String() string {
+	return string(e)
+}
+
+type EventTypeEnum string
+
+var (
+	EventTypeArrived  EventTypeEnum = "ARRI"
+	EventTypeDeparted EventTypeEnum = "DEPA"
+)
+
+func (e EventTypeEnum) String() string {
+	return string(e)
+}
+
 type OceanSubscription struct {
 	MessageHeaderOceanSub *MessageHeader         `json:"message_header,omitempty"`
 	OceanSubscriptions    []OceanSubSubscription `json:"ocean_subscriptions,omitempty"`
@@ -66,6 +91,13 @@ type OceanSubLocation struct {
 	Address      *OceanSubAddress `json:"address"`      // for Subscribe with master bill of lading
 }
 
+func GetCarrierCode(carrier string) (*string, err) {
+	if code, ok := CarrierCodes[carrier]; ok {
+		return &code, nil
+	}
+	return nil, errors.New("Carrier not found " + carrier)
+}
+
 func (c *Client) SubscribeOceanShipments(shipments []OceanSubSubscription) (*ShipmentSubscriptionResponse, error) {
 
 	request := &OceanSubscription{
@@ -86,8 +118,9 @@ func (c *Client) SubscribeOceanShipments(shipments []OceanSubSubscription) (*Shi
 }
 
 type SeaHeader struct {
-	MessageTs  *Timestamp `json:"messageTs,omitempty"`
-	ApiVersion *string    `json:"apiVersion,omitempty"`
+	MessageTs   *Timestamp   `json:"messageTs,omitempty"`
+	Co2Emission *Co2Emission `json:"co2Emission,omitempty"`
+	ApiVersion  *string      `json:"apiVersion,omitempty"`
 }
 
 type SeaShipmentWebHook struct {

@@ -33,7 +33,7 @@ func TestSubscribeShipments(t *testing.T) {
 		Mawb:      bluebox.Str2Pnt(os.Getenv("BB_MAWB")),
 		PushTypes: []string{"SHIPMENT", "TELEMETRY"},
 	}}
-	response, err := client.SubscribeShipments(shipments)
+	response, err := client.SubscribeAirShipments(shipments)
 	assert.NoError(t, err)
 	assert.NotNil(t, response, "response cannot be nil")
 	fmt.Println(bluebox.Serialize(response))
