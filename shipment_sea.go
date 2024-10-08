@@ -1,6 +1,9 @@
 package bluebox
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // enum DateType ACT (Actual) PLN (Planned) EST (Estimated)
 
@@ -91,9 +94,9 @@ type OceanSubLocation struct {
 	Address      *OceanSubAddress `json:"address"`      // for Subscribe with master bill of lading
 }
 
-func GetCarrierCode(carrier string) (*string, err) {
-	if code, ok := CarrierCodes[carrier]; ok {
-		return &code, nil
+func GetCarrierNaftaCode(carrier string) (*string, error) {
+	if code, ok := Carriers[carrier]; ok {
+		return &code.NMFTACode, nil
 	}
 	return nil, errors.New("Carrier not found " + carrier)
 }
