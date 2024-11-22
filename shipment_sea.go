@@ -50,10 +50,10 @@ type OceanSubSubscription struct {
 }
 
 type OceanSubCommodity struct {
-	CommodityRequestedEquipmentLink *string `json:"commodityRequestedEquipmentLink,omitempty"` // for Subscribe single shipment
-	CommodityType                   *string `json:"commodityType,omitempty"`                   // for Subscribe with master bill of lading
-	CargoGrossWeight                *int    `json:"cargoGrossWeight,omitempty"`                // for Subscribe with master bill of lading
-	NumberOfPackages                *int    `json:"numberOfPackages,omitempty"`                // for Subscribe with master bill of lading
+	CommodityRequestedEquipmentLink *string  `json:"commodityRequestedEquipmentLink,omitempty"` // for Subscribe single shipment
+	CommodityType                   *string  `json:"commodityType,omitempty"`                   // for Subscribe with master bill of lading
+	CargoGrossWeight                *float64 `json:"cargoGrossWeight,omitempty"`                // for Subscribe with master bill of lading
+	NumberOfPackages                *int     `json:"numberOfPackages,omitempty"`                // for Subscribe with master bill of lading
 }
 
 type OceanSubReference struct {
